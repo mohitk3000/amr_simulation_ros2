@@ -3,6 +3,8 @@
 # Description-
 This repository contains all the file for simulation of navigation stack of AMR.
 
+First, clone the repository in src foler for ROS2 workspace
+
 # Launch files
 
 launch the main.launch.py for launching the simulation
