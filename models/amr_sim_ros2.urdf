@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="amr_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- <xacro:property name="wheel_radius" value="0.0767"/>
+    <xacro:property name="wheel_width" value="0.035"/> -->
+
+  <link name="base_footprint"></link>
+  <joint name="joint_0" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 3.14"/>
+    <parent link="base_footprint" />
+    <child link="base_link" />
+  </joint>
+
+  <link name="base_link">
+    <origin xyz="0 0 0" rpy="0 0 3.14"/>
+    <inertial>
+      <origin xyz="0.154134791457833 0.128335370253244 -0.0303964618780423" rpy="0 0 0" />
+      <mass value="17.7243278923098" />
+      <inertia ixx="0.151725562910189" ixy="0" ixz="0" iyy="0.209426046443263" iyz="0" izz="0.10643501504363" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0.031 0" rpy="0 0 3.14" />
+      <material name="blue">
+        <color rgba="0 0 1 1" />
+      </material>
+      <geometry>
+        <mesh filename="package://amr_sim_ros2/meshes/base_link.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.075 0 0.14" rpy="0 0 0" />
+      <geometry>
+        <!-- <box size="0.68 0.50 0.27"/> -->
+        <box size="0.68 0.40 0.27" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_joint" type="revolute">
+    <limit upper="3.1415" lower="-3.1415" effort="30" velocity="5.0" />
+    <origin xyz="-0.064918 0.2 0.0767" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_r" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="wheel_r">
+    <inertial>
+      <mass value="1.1541" />
+      <inertia ixx="0.0029866" ixy="0" ixz="0" iyy="0.0016967" iyz="0" izz="0.0016788" />
+    </inertial>
+    <collision>
+      <origin xyz="0 -0.042 0" rpy="1.57 0 0" />
+      <geometry>
+        <cylinder radius="0.0767" length="0.035" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.57" />
+      <material name="red">
+        <color rgba="1 0 0 1" />
+      </material>
+      <geometry>
+        <mesh filename="package://amr_sim_ros2/meshes/Wheel_2.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="left_joint" type="continuous">
+    <origin xyz="-0.064918 -0.2 0.0767" rpy="0 0 3.14" />
+    <parent link="base_link" />
+    <child link="wheel_l" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="wheel_l">
+    <inertial>
+      <mass value="1.1541" />
+      <inertia ixx="0.0029866" ixy="0" ixz="0" iyy="0.0016967" iyz="0" izz="0.0016788" />
+    </inertial>
+    <collision>
+      <origin xyz="0 0.042 0" rpy="1.57 0 0" />
+      <geometry>
+        <cylinder radius="0.0767" length="0.035" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.57" />
+      <material name="red">
+        <color rgba="1 0 0 1" />
+      </material>
+      <geometry>
+        <mesh filename="package://amr_sim_ros2/meshes/Wheel_2.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="0.0 0 0.31" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="imu_link" />
+  </joint>
+
+  <link name="imu_link"></link>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.15 0 0.31" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+  </joint>
+
+  <link name="lidar_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.06" length="0.080" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <material name="green">
+        <color rgba="0 1 0 1" />
+      </material>
+      <geometry>
+        <cylinder radius="0.06" length="0.080" />
+      </geometry>
+    </visual>
+  </link>
+
+</robot>
