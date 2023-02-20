@@ -1,7 +1,3 @@
-# Author: Addison Sears-Collins
-# Date: September 2, 2021
-# Description: Launch a basic mobile robot using the ROS 2 Navigation Stack
-# https://automaticaddison.com
 
 import os
 from launch import LaunchDescription
